@@ -16,11 +16,13 @@
                         {{ __('Inicio') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('show_users')" :active="request()->routeIs('show_users')">
-                        {{ __('Usuarios') }}
-                    </x-nav-link>
-                </div>
+                @can('admin_user')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('show_users')" :active="request()->routeIs('show_users')">
+                            {{ __('Usuarios') }}
+                        </x-nav-link>
+                    </div>
+                @endcan
             </div>
 
             <!-- Settings Dropdown -->

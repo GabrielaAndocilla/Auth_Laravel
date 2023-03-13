@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\Rule;
+
 
 class UserController extends Controller
 {
@@ -20,7 +22,7 @@ class UserController extends Controller
      */
     public function dashboard(): View
     {
-        $userRol = Auth::user()->role->first()->description;
+        $userRol = Auth::user()->role->description;
         return view('dashboard',["role"=>$userRol]);
     }
 
@@ -52,11 +54,10 @@ class UserController extends Controller
         return Redirect::route('show_users')->with('status', 'Usuario creado');
     }
     public function update(string $id, Request $request): RedirectResponse
-    {
-        Log::info('update');
-        $validated = $request->validateWithBag('updatePassword', [
+    {        
+        $validated = $request->validate( [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($id)],
         ]);
         $user = User::find($id)->update([
             'name' => $validated['name'],
@@ -66,7 +67,7 @@ class UserController extends Controller
         return Redirect::route('show_users')->with('status', 'Usuario actualizado');
     }
 
-    public function show(): View
+    public function show(Request $request): View
     {
         return view('users.show_users', [
             'users' => User::all()->load('role'),
