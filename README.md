@@ -25,8 +25,7 @@ Para ejecutar sistema se esta usando:
 
 1. Clonar el proyecto `git@github.com:GabrielaAndocilla/Auth_Laravel.git`
 2. Ejecutar `composer install`
-3. Ejecutar `php artisan key:generate`
-4. Crear archivo .env , es importante colocar **las cofiguraciones de la base**
+3. Crear archivo .env , es importante colocar **las cofiguraciones de la base**
     Ejemplo
     ```
     DB_CONNECTION=mysql
@@ -36,6 +35,7 @@ Para ejecutar sistema se esta usando:
     DB_USERNAME=root
     DB_PASSWORD=
     ```
+4. Ejecutar `php artisan key:generate`
 5. Ejecutar `npm install`
 6. Ejecutar `php artisan migrate --seed` antes de ejecutar este comando verificar que la base haya sido creada
 7. Si todo fue configurado correctamente el sistema debería ejecurtarse sino porfavor poner TRUE al APP_DEBUG para tener mayor información
