@@ -20,5 +20,9 @@ class UserSeeder extends Seeder
             ->count(1)
             ->admin()
             ->create();
+        User::factory()
+            ->count(3)
+            ->student()
+            ->create();
     }
 }
