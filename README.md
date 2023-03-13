@@ -1,14 +1,14 @@
 ## Acerca de este projecto
-El proyecto esta enfocado en mostrar como hacer la Authenticación y la Autorización de Usuarios basados en sus roles. 
+El proyecto esta enfocado en mostrar como hacer la Autenticación y la Autorización de Usuarios basados en sus roles. 
 
-Se manegará la administración de usuarios dependiendo de su rol, para el proyecto se mostrará 2 roles:
-- Administrador : El usuario podra ver los usuarios existentes, editarlos, crearlos y eliminarlos.
+Se manejará la administración de usuarios dependiendo de su rol, para el proyecto se mostrará 2 roles:
+- Administrador : El usuario podrá ver los usuarios existentes, editarlos, crearlos y eliminarlos.
 - Estudiante: El usuario podrá entrar al sistema y editar su perfil
 
-Todos los usuarios serán manegados desde una sola tabla de usuarios y serán asignados a sus roles.
+Todos los usuarios serán manejados desde una sola tabla de usuarios y serán asignados a sus roles.
 
 Las rutas:
-- '/' => Pantalla de inicio con botton de Login
+- '/' => Pantalla de inicio con botón de Login
 - '/login' => Login de usuarios con rol de estudiantes desde el cuál no podrán ingresar Administradores
 - '/admin' => Login de usuarios con rol de Administradores desde el cuál no podrán ingresar estudiantes
 - '/usuarios' => Pantalla solo para rol de Administrador donde se puede gestionar los usuarios
@@ -40,13 +40,13 @@ Para ejecutar sistema se esta usando:
 6. Ejecutar `php artisan migrate --seed` antes de ejecutar este comando verificar que la base haya sido creada
 7. Si todo fue configurado correctamente el sistema debería ejecurtarse sino porfavor poner TRUE al APP_DEBUG para tener mayor información
 8. Ejecutar en una terminal `php artisan serve`
-9. Ejecutar en otra terminal `npm run dev`
+9. Ejecutar en otra terminal `npm run dev` mientras se esta cambiando los estilos del blade ya que esto mantendrá actualizando la importación de los estilos de tailwind. Si ya son los definitivos se puede ejecutar `npm run build`
 
 ### Cómo se implementará la autenticación y autorización de usuarios?
 
-Para la autenticación se uso el starter kit con blade siguiendo los pasos que menciona la documentacion. [Link a las instructiones](https://laravel.com/docs/10.x/starter-kits#laravel-breeze-installation)
+Para la autenticación se uso el starter kit con blade siguiendo los pasos que menciona la documentación. [Link a las instructiones](https://laravel.com/docs/10.x/starter-kits#laravel-breeze-installation)
 
-Este kit nos crearan una variedad de archivos los cuales podemos editar o eliminar accorde a nuestras necesidades. En nuestro caso eliminamos algunas vistas, rutas y controlladores relacionados a la verificación del correo, el registro y la recuperación de contraseñas.
+Este kit nos crearan una variedad de archivos los cuales podemos editar o eliminar acorde a nuestras necesidades. En nuestro caso eliminamos algunas vistas, rutas y controladores relacionados a la verificación del correo, el registro y la recuperación de contraseñas.
 
 Para la autorización se sigio la documentación igual de [Laravel](https://laravel.com/docs/10.x/authorization), donde se habla sobre los Gates y Policies. La Autorización la estamos manejando para el manejo de **roles**.
 
@@ -54,8 +54,8 @@ Es interesante el tema de roles en este contexto ya que muchas veces se utiliza 
 
 Veamos lo con mayor deteminiento, si revisamos el `config/auth.php` en la sección de los guards, menciona que los guards ** define como los usuarios son obtenidos de la base o de un mecanismo de almacenamiento .**  Si revisamos el guard por default este obtiene los usuarios de la tabla Users que es exactamente lo que queremos para el proyecto por lo que no habría que cambiar. 
 Entonces cuándo los usamos?
-Los usariamos si quisieramos tener dos fuentes diferentes de autenticación por ejemplo si tendríamos dos tablas Administradores los empleados de la empresa y Estudiantes otra entidad diferente con otros attributo y otra tabla diferente.
+Los usaríamos si quisiéramos tener dos fuentes diferentes de autenticación por ejemplo si tendríamos dos tablas Administradores los empleados de la empresa y Estudiantes otra entidad diferente con otros atributo y otra tabla diferente.
 
-Puedes revisar este foro donde se habla del tema:
+Puedes revisar estos foro donde se habla del tema:
 - https://laracasts.com/discuss/channels/laravel/laravel-guards-vs-gates
 - https://stackoverflow.com/questions/57475132/creating-admin-guard-vs-using-the-default-guard-for-both-users-and-admins
